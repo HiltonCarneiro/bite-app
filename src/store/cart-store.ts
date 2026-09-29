@@ -20,6 +20,21 @@ interface CartStore {
 
 const now = () => new Date().toISOString();
 
+function isCartItem(value: unknown): value is CartItem {
+  if (!value || typeof value !== "object") return false;
+  const item = value as Partial<CartItem>;
+  return typeof item.id === "string"
+    && typeof item.menuItemId === "string"
+    && typeof item.menuItemName === "string"
+    && typeof item.image === "string"
+    && typeof item.imageAlt === "string"
+    && typeof item.basePrice === "number"
+    && Array.isArray(item.selectedOptions)
+    && Number.isInteger(item.quantity)
+    && (item.quantity ?? 0) >= 1
+    && typeof item.unitPrice === "number";
+}
+
 export const useCartStore = create<CartStore>()(
   persist(
     (set) => ({
@@ -49,6 +64,13 @@ export const useCartStore = create<CartStore>()(
       storage: createJSONStorage(() => safeStorage),
       partialize: ({ items, updatedAt }) => ({ items, updatedAt }),
       onRehydrateStorage: () => (state) => state?.setHasHydrated(true),
+      merge: (persisted, current) => {
+        const saved = persisted as Partial<CartStore> | undefined;
+        const items = Array.isArray(saved?.items)
+          ? saved.items.filter(isCartItem).map((item) => ({ ...item, totalPrice: calculateCartItemTotal(item.unitPrice, item.quantity) }))
+          : [];
+        return { ...current, items, updatedAt: typeof saved?.updatedAt === "string" ? saved.updatedAt : now() };
+      },
     },
   ),
 );

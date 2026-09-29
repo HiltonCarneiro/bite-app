@@ -12,6 +12,20 @@ interface OrderStore {
   setHasHydrated: (value: boolean) => void;
 }
 
+function isOrder(value: unknown): value is Order {
+  if (!value || typeof value !== "object") return false;
+  const order = value as Partial<Order>;
+  return typeof order.id === "string"
+    && typeof order.createdAt === "string"
+    && order.status === "confirmed"
+    && typeof order.customerName === "string"
+    && order.fulfillmentMethod === "pickup"
+    && ["pix", "card-at-counter", "cash"].includes(order.paymentMethod ?? "")
+    && Array.isArray(order.items)
+    && order.items.length > 0
+    && typeof order.total === "number";
+}
+
 export const useOrderStore = create<OrderStore>()(
   persist(
     (set) => ({
@@ -25,6 +39,10 @@ export const useOrderStore = create<OrderStore>()(
       storage: createJSONStorage(() => safeStorage),
       partialize: ({ orders }) => ({ orders }),
       onRehydrateStorage: () => (state) => state?.setHasHydrated(true),
+      merge: (persisted, current) => {
+        const saved = persisted as Partial<OrderStore> | undefined;
+        return { ...current, orders: Array.isArray(saved?.orders) ? saved.orders.filter(isOrder) : [] };
+      },
     },
   ),
 );
