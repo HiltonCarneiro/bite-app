@@ -2,44 +2,49 @@
 
 import { AlertCircle, Check, ShoppingCart } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { QuantityControl } from "@/components/cart/quantity-control";
 import { calculateConfiguredUnitPrice, createCartItem, selectionsToOptions, validateCustomizationSelections } from "@/domain/cart";
 import { formatCurrency } from "@/lib/format";
 import { useCartStore } from "@/store/cart-store";
-import type { CustomizationSelections, MenuItem } from "@/types";
+import type { CartItem, CustomizationSelections, MenuItem } from "@/types";
 
 export function ProductCustomizer({ item }: { item: MenuItem }) {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const editId = searchParams.get("editar");
   const cartItems = useCartStore((state) => state.items);
   const hasHydrated = useCartStore((state) => state.hasHydrated);
+  const editingItem = editId ? cartItems.find((cartItem) => cartItem.id === editId && cartItem.menuItemId === item.id) : undefined;
+
+  if (!hasHydrated) return <p role="status">Carregando opções do produto…</p>;
+
+  return <ProductCustomizerReady key={editId ?? "new-item"} item={item} editId={editId} editingItem={editingItem} />;
+}
+
+interface ProductCustomizerReadyProps {
+  item: MenuItem;
+  editId: string | null;
+  editingItem?: CartItem;
+}
+
+function ProductCustomizerReady({ item, editId, editingItem }: ProductCustomizerReadyProps) {
+  const router = useRouter();
   const addItem = useCartStore((state) => state.addItem);
   const replaceItem = useCartStore((state) => state.replaceItem);
-  const [selections, setSelections] = useState<CustomizationSelections>({});
-  const [quantity, setQuantity] = useState(1);
-  const [initializedEditId, setInitializedEditId] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!editId || !hasHydrated || initializedEditId === editId) return;
-    const existing = cartItems.find((cartItem) => cartItem.id === editId && cartItem.menuItemId === item.id);
-    if (existing) {
-      const restored = existing.selectedOptions.reduce<CustomizationSelections>((result, option) => ({
+  const [selections, setSelections] = useState<CustomizationSelections>(() =>
+    editingItem
+      ? editingItem.selectedOptions.reduce<CustomizationSelections>((result, option) => ({
         ...result,
         [option.groupId]: [...(result[option.groupId] ?? []), option.optionId],
-      }), {});
-      setSelections(restored);
-      setQuantity(existing.quantity);
-    }
-    setInitializedEditId(editId);
-  }, [cartItems, editId, hasHydrated, initializedEditId, item.id]);
+      }), {})
+      : {},
+  );
+  const [quantity, setQuantity] = useState(editingItem?.quantity ?? 1);
 
   const validation = useMemo(() => validateCustomizationSelections(item, selections), [item, selections]);
   const selectedOptions = useMemo(() => selectionsToOptions(item, selections), [item, selections]);
   const unitPrice = calculateConfiguredUnitPrice(item.basePrice, selectedOptions);
   const total = unitPrice * quantity;
-  const editingItem = editId ? cartItems.find((cartItem) => cartItem.id === editId && cartItem.menuItemId === item.id) : undefined;
 
   const toggleOption = (groupId: string, optionId: string, mode: "single" | "multiple", maxSelections?: number) => {
     setSelections((current) => {
@@ -62,7 +67,7 @@ export function ProductCustomizer({ item }: { item: MenuItem }) {
 
   return (
     <form className="grid gap-6" onSubmit={handleSubmit} noValidate>
-      {editId && hasHydrated && !editingItem && (
+      {editId && !editingItem && (
         <p className="error-message" role="alert"><AlertCircle aria-hidden="true" size={20} />Não foi possível localizar este item no carrinho. Você pode criar uma nova configuração.</p>
       )}
       {item.customizationGroups.map((group) => {

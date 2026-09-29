@@ -15,8 +15,8 @@ test("home permanece utilizável sem rolagem horizontal nas larguras previstas",
 test("conteúdo principal continua disponível com zoom de 200%", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/cardapio");
-  await page.evaluate(() => { document.documentElement.style.zoom = "2"; });
   await expect(page.getByRole("heading", { name: "Escolha sua refeição" })).toBeVisible();
+  await page.evaluate(() => { document.documentElement.style.zoom = "2"; });
   await expect(page.getByLabel("Pesquisar no cardápio")).toBeVisible();
   await expect(page.getByRole("link", { name: "Ver detalhes" }).first()).toBeVisible();
 });
