@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" role="img">
-  <rect width="800" height="560" fill="#E7C7A2"/><ellipse cx="400" cy="315" rx="285" ry="190" fill="#fff"/>
-  <path d="M145 305h510c-20 172-115 220-255 220S165 477 145 305Z" fill="#2E7D32"/>
-  <rect x="250" y="235" width="115" height="85" rx="20" fill="#8C4F34" transform="rotate(-8 250 235)"/>
-  <rect x="390" y="230" width="120" height="88" rx="20" fill="#75412E" transform="rotate(10 390 230)"/>
-  <circle cx="300" cy="370" r="35" fill="#CE5A42"/><circle cx="420" cy="360" r="58" fill="#F1D36B"/><circle cx="520" cy="355" r="38" fill="#7C3E26"/>
-</svg>

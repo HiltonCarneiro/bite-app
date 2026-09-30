@@ -24,7 +24,7 @@ export function OrderConfirmation({ id }: { id: string }) {
         <div className="rounded-xl border border-[#ded6d0] p-3"><dt className="text-sm text-[#5f5a57]">Total</dt><dd className="m-0 font-semibold">{formatCurrency(order.total)}</dd></div>
         <div className="rounded-xl border border-[#ded6d0] p-3 sm:col-span-2"><dt className="text-sm text-[#5f5a57]">Retirada</dt><dd className="m-0 font-semibold">{fulfillmentMethodLabels[order.fulfillmentMethod]}</dd></div>
       </dl>
-      <p className="m-0 text-sm text-[#5f5a57]">Esta confirmação faz parte de uma simulação. Nenhuma cobrança foi realizada.</p>
+      <p className="m-0 text-sm text-[#5f5a57]">O pedido foi salvo neste navegador. Nenhuma cobrança online foi realizada.</p>
       <div className="flex w-full flex-wrap justify-center gap-3"><Link className="button-primary flex-1" href={`/pedidos/${order.id}`}>Ver detalhes</Link><Link className="button-secondary flex-1" href="/cardapio">Voltar ao cardápio</Link></div>
     </section>
   );

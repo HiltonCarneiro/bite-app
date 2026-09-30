@@ -196,10 +196,13 @@ Mostrar:
 
 Grupos sugeridos:
 
-- tamanho;
+- base, pão ou tipo de massa;
 - acompanhamento;
-- bebida;
-- sobremesa.
+- molho ou finalização;
+- adicionais;
+- retirada de ingredientes.
+
+Bebidas e sobremesas devem ser produtos independentes do cardápio, não personalizações de pratos.
 
 Nenhuma opção começa selecionada.
 
@@ -329,6 +332,7 @@ Requisitos:
 
 - ao menos 6 pratos;
 - ao menos 3 categorias;
+- categorias próprias para bebidas e sobremesas;
 - diferentes preços;
 - diferentes grupos de personalização;
 - bebidas;

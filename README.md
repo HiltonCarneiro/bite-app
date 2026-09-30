@@ -36,6 +36,17 @@ Não há backend, banco de dados, serviço externo em tempo de execução nem va
 
 O carrinho é salvo em `bite:cart:v1` e os pedidos em `bite:orders:v1`. A camada de persistência trata SSR, armazenamento indisponível, JSON corrompido e estruturas antigas ou inválidas. Cada pedido guarda um snapshot dos itens e personalizações para que o histórico não dependa de alterações futuras no cardápio.
 
+## Identidade e cardápio
+
+- o logo oficial está em `public/brand/bite-logo.png` e também é usado nos metadados da aplicação;
+- as fotografias do cardápio são arquivos WebP locais, em proporção 4:3, com fontes e licença registradas em `public/images/menu/SOURCES.md`;
+- o cardápio possui Refeições, Lanches, Massas, Bowls, Bebidas e Sobremesas;
+- cada prato oferece escolhas coerentes com sua composição, separando escolhas obrigatórias, adicionais e retirada de ingredientes;
+- bebidas e sobremesas são produtos independentes e não aparecem como personalização de pratos;
+- a busca considera nome, descrição e categoria, sem diferenciar maiúsculas, minúsculas ou acentos.
+
+As mudanças preservam a baseline sem nudges: não há recomendações, popularidade, urgência, escassez ou opções alimentares pré-selecionadas.
+
 ## Acessibilidade
 
 O projeto aplica os nove critérios definidos em `identidadevisual.md`:

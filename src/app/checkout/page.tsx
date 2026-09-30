@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Checkout" };
 export default function CheckoutPage() {
   return (
     <div className="container-page page-section section-stack">
-      <PageHeading eyebrow="Checkout" title="Finalize seu pedido" description="Informe os dados para retirada e escolha uma forma de pagamento simulada." />
+      <PageHeading eyebrow="Checkout" title="Finalize seu pedido" description="Informe os dados para retirada e escolha como deseja pagar no balcão." />
       <CheckoutForm />
     </div>
   );

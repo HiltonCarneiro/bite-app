@@ -61,7 +61,7 @@ export function CartView() {
       <aside className="card grid gap-4 p-5 lg:sticky lg:top-28" aria-labelledby="cart-summary-title">
         <h2 id="cart-summary-title" className="m-0 text-xl font-semibold">Resumo do carrinho</h2>
         <dl className="m-0 flex items-center justify-between gap-4"><dt>Subtotal</dt><dd className="m-0 text-xl font-bold">{formatCurrency(subtotal)}</dd></dl>
-        <p className="m-0 text-sm text-[#5f5a57]">Pedido simulado para retirada no balcão. Não há cobrança online.</p>
+        <p className="m-0 text-sm text-[#5f5a57]">Retirada no balcão. O pagamento é informado no checkout.</p>
         <Link className="button-primary w-full" href="/checkout">Continuar para checkout</Link>
         <Link className="button-secondary w-full" href="/cardapio">Adicionar outro item</Link>
       </aside>
