@@ -41,7 +41,10 @@ Exemplos:
 
 - Refeições;
 - Lanches;
-- Massas.
+- Massas;
+- Bowls;
+- Bebidas;
+- Sobremesas.
 
 ```ts
 export interface Category {
@@ -102,10 +105,11 @@ Agrupa decisões de personalização.
 
 Exemplos:
 
-- tamanho;
+- base;
 - acompanhamento;
-- bebida;
-- sobremesa.
+- molho;
+- adicionais;
+- retirada de ingredientes.
 
 ```ts
 export type SelectionMode = "single" | "multiple";
@@ -175,6 +179,10 @@ Bebida:
   available: true
 }
 ```
+
+Na implementação atual, bebidas e sobremesas são `MenuItem` independentes. A opção acima permanece apenas como exemplo do formato de uma alternativa, não como grupo usado nos pratos.
+
+Opções de retirada de ingrediente sempre usam `priceDelta: 0`, são opcionais e só podem citar ingredientes presentes no produto.
 
 ### Regras de baseline
 

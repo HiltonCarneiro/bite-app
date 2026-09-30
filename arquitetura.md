@@ -254,11 +254,14 @@ Regras de neutralidade:
 
 O usuário poderá escolher, quando aplicável:
 
-- tamanho;
-- acompanhamento;
-- bebida;
-- sobremesa;
+- base ou tipo de massa;
+- acompanhamentos;
+- molho ou finalização;
+- adicionais;
+- ingredientes a retirar;
 - quantidade.
+
+Bebidas e sobremesas são itens independentes do cardápio e não personalizações de pratos.
 
 Regras:
 
@@ -429,14 +432,19 @@ Sugestão mínima:
 
 - 6 pratos principais;
 - pelo menos 3 categorias;
-- opções de tamanho;
-- opções de acompanhamento;
-- bebidas;
-- sobremesas.
+- personalizações específicas por produto;
+- categoria de bebidas;
+- categoria de sobremesas.
 
 ### Imagens
 
 Preferir imagens locais em `public/images`.
+
+Convenções atuais:
+
+- marca em `public/brand`;
+- fotografias do cardápio em `public/images/menu`;
+- imagens 4:3 em WebP, com atribuições registradas junto aos assets.
 
 Se imagens externas forem baixadas durante o desenvolvimento, elas devem ser armazenadas no repositório e servidas localmente depois.
 

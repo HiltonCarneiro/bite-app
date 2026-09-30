@@ -2,6 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 async function expectNoAxeViolations(page: import("@playwright/test").Page) {
+  await expect(page.locator("h1")).toBeVisible();
   const results = await new AxeBuilder({ page }).analyze();
   expect(results.violations, results.violations.map((violation) => `${violation.id}: ${violation.help}`).join("\n")).toEqual([]);
 }
@@ -27,6 +28,7 @@ test("páginas principais não apresentam violações automatizadas", async ({ p
 
   await page.goto("/produto/hamburguer-classico");
   await page.getByRole("radio", { name: /Brioche/ }).check();
+  await page.getByRole("radio", { name: /Ao ponto/ }).check();
   await page.getByRole("button", { name: "Adicionar ao carrinho" }).click();
   await page.getByRole("link", { name: "Continuar para checkout" }).click();
   await expect(page).toHaveURL(/\/checkout/);

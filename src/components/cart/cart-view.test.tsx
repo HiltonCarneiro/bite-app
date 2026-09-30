@@ -18,7 +18,10 @@ describe("CartView", () => {
   it("altera a quantidade e remove o item", async () => {
     const user = userEvent.setup();
     const product = menuItems.find((item) => item.id === "hamburguer-classico")!;
-    useCartStore.setState({ items: [createCartItem(product, { "hamburguer-classico-bread": ["hamburguer-classico-bread-brioche"] }, 1, "cart-test")], hasHydrated: true });
+    useCartStore.setState({ items: [createCartItem(product, {
+      "hamburguer-classico-bread": ["hamburguer-classico-bread-brioche"],
+      "hamburguer-classico-doneness": ["hamburguer-classico-doneness-medium"],
+    }, 1, "cart-test")], hasHydrated: true });
     render(<CartView />);
     await user.click(screen.getByRole("button", { name: "Aumentar quantidade" }));
     expect(useCartStore.getState().items[0].quantity).toBe(2);

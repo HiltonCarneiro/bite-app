@@ -14,7 +14,10 @@ describe("CheckoutForm", () => {
   beforeEach(() => {
     push.mockReset();
     const product = menuItems.find((item) => item.id === "hamburguer-classico")!;
-    useCartStore.setState({ items: [createCartItem(product, { "hamburguer-classico-bread": ["hamburguer-classico-bread-brioche"] }, 1, "checkout-cart")], hasHydrated: true });
+    useCartStore.setState({ items: [createCartItem(product, {
+      "hamburguer-classico-bread": ["hamburguer-classico-bread-brioche"],
+      "hamburguer-classico-doneness": ["hamburguer-classico-doneness-medium"],
+    }, 1, "checkout-cart")], hasHydrated: true });
     useOrderStore.setState({ orders: [], hasHydrated: true });
   });
 

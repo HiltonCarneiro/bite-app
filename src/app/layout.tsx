@@ -5,7 +5,11 @@ import { SiteHeader } from "@/components/layout/site-header";
 
 export const metadata: Metadata = {
   title: { default: "Bite", template: "%s | Bite" },
-  description: "Escolha, personalize e simule pedidos para retirada com o Bite.",
+  description: "Escolha seus pratos, personalize e retire no balcão com o Bite.",
+  icons: {
+    icon: "/brand/bite-logo.png",
+    apple: "/brand/bite-logo.png",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

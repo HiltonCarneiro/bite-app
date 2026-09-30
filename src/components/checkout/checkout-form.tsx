@@ -23,9 +23,9 @@ const checkoutSchema = z.object({
 });
 
 const paymentOptions: { value: PaymentMethod; label: string; description: string }[] = [
-  { value: "pix", label: "PIX", description: "Pagamento simulado por PIX na retirada." },
-  { value: "card-at-counter", label: "Cartão no balcão", description: "Pagamento simulado com cartão no momento da retirada." },
-  { value: "cash", label: "Dinheiro", description: "Pagamento simulado em dinheiro no momento da retirada." },
+  { value: "pix", label: "PIX", description: "Pagamento por PIX no momento da retirada." },
+  { value: "card-at-counter", label: "Cartão no balcão", description: "Pagamento com cartão no momento da retirada." },
+  { value: "cash", label: "Dinheiro", description: "Pagamento em dinheiro no momento da retirada." },
 ];
 
 export function CheckoutForm() {
@@ -62,7 +62,7 @@ export function CheckoutForm() {
             {errors.customerName && <p id="customer-name-error" className="error-message m-0 mt-1" role="alert"><AlertCircle aria-hidden="true" size={18} />{errors.customerName.message}</p>}
           </div>
           <input type="hidden" value="pickup" {...register("fulfillmentMethod")} />
-          <div className="rounded-xl border-2 border-[#81756e] p-4"><h3 className="m-0 text-base font-semibold">Método de retirada</h3><p className="m-0">Retirada no balcão</p><p className="m-0 text-sm text-[#5f5a57]">Esta é a única modalidade disponível neste protótipo.</p></div>
+          <div className="rounded-xl border-2 border-[#81756e] p-4"><h3 className="m-0 text-base font-semibold">Método de retirada</h3><p className="m-0">Retirada no balcão</p><p className="m-0 text-sm text-[#5f5a57]">Esta é a modalidade disponível para o pedido.</p></div>
         </section>
 
         <fieldset className="card m-0 grid gap-4 border p-5" aria-describedby={errors.paymentMethod ? "payment-error" : "payment-hint"}>

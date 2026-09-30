@@ -70,6 +70,12 @@ function ProductCustomizerReady({ item, editId, editingItem }: ProductCustomizer
       {editId && !editingItem && (
         <p className="error-message" role="alert"><AlertCircle aria-hidden="true" size={20} />Não foi possível localizar este item no carrinho. Você pode criar uma nova configuração.</p>
       )}
+      {item.customizationGroups.length === 0 && (
+        <section className="card p-4" aria-labelledby="no-customization-title">
+          <h2 id="no-customization-title" className="m-0 text-lg font-semibold">Sem personalizações</h2>
+          <p className="m-0 mt-1 text-sm text-[#5f5a57]">Escolha a quantidade para adicionar ao carrinho.</p>
+        </section>
+      )}
       {item.customizationGroups.map((group) => {
         const selectedIds = selections[group.id] ?? [];
         const instructionId = `${group.id}-instruction`;
@@ -97,7 +103,11 @@ function ProductCustomizerReady({ item, editId, editingItem }: ProductCustomizer
                     <span className="grid flex-1 gap-1">
                       <span className="font-semibold">{option.name}</span>
                       {option.description && <span className="text-sm text-[#5f5a57]">{option.description}</span>}
-                      <span className="text-sm">{option.priceDelta === 0 ? "Sem acréscimo" : `+ ${formatCurrency(option.priceDelta)}`}</span>
+                      <span className="text-sm">
+                        {option.priceDelta === 0
+                          ? group.name === "Retirar ingredientes" ? "Sem alteração no preço" : "Sem acréscimo"
+                          : `+ ${formatCurrency(option.priceDelta)}`}
+                      </span>
                       {!option.available && <span className="text-sm font-semibold">Indisponível</span>}
                     </span>
                     {selected && <Check aria-label="Selecionado" size={22} />}
@@ -105,6 +115,15 @@ function ProductCustomizerReady({ item, editId, editingItem }: ProductCustomizer
                 );
               })}
             </div>
+            {!group.required && group.selectionMode === "single" && selectedIds.length > 0 && (
+              <button
+                className="button-secondary w-fit"
+                type="button"
+                onClick={() => setSelections((current) => ({ ...current, [group.id]: [] }))}
+              >
+                Limpar esta escolha
+              </button>
+            )}
             {validation.errors[group.id] && <p id={errorId} className="error-message m-0"><AlertCircle aria-hidden="true" size={18} />{validation.errors[group.id]}</p>}
           </fieldset>
         );
@@ -115,7 +134,7 @@ function ProductCustomizerReady({ item, editId, editingItem }: ProductCustomizer
         <QuantityControl value={quantity} onChange={setQuantity} />
       </section>
 
-      <div className="sticky bottom-3 z-20 grid gap-3 rounded-2xl border border-[#ded6d0] bg-white p-4 shadow-lg sm:grid-cols-[1fr_auto] sm:items-center">
+      <div className="grid gap-3 rounded-2xl border border-[#ded6d0] bg-white p-4 shadow-lg sm:sticky sm:bottom-3 sm:z-20 sm:grid-cols-[1fr_auto] sm:items-center">
         <div><p className="m-0 text-sm text-[#5f5a57]">Total desta configuração</p><p className="m-0 text-2xl font-bold" aria-live="polite">{formatCurrency(total)}</p></div>
         <button className="button-primary" type="submit" disabled={!validation.valid || !item.available} aria-describedby={!validation.valid ? "submit-help" : undefined}>
           <ShoppingCart aria-hidden="true" size={20} />{editingItem ? "Salvar alterações" : "Adicionar ao carrinho"}

@@ -6,6 +6,9 @@ import { useSearchParams } from "next/navigation";
 import { ProductCard } from "@/components/menu/product-card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { categories, sortedMenuItems } from "@/data/menu";
+import { normalizeSearchText } from "@/lib/search";
+
+const categoryNames = new Map(categories.map((category) => [category.id, category.name]));
 
 export function MenuBrowser() {
   const searchParams = useSearchParams();
@@ -14,10 +17,15 @@ export function MenuBrowser() {
   const [categoryId, setCategoryId] = useState(initialCategory);
 
   const visibleItems = useMemo(() => {
-    const normalizedQuery = query.trim().toLocaleLowerCase("pt-BR");
+    const normalizedQuery = normalizeSearchText(query);
     return sortedMenuItems.filter((item) => {
       const matchesCategory = categoryId === "all" || item.categoryId === categoryId;
-      const matchesSearch = item.name.toLocaleLowerCase("pt-BR").includes(normalizedQuery);
+      const searchableText = normalizeSearchText([
+        item.name,
+        item.description,
+        categoryNames.get(item.categoryId) ?? "",
+      ].join(" "));
+      const matchesSearch = searchableText.includes(normalizedQuery);
       return matchesCategory && matchesSearch;
     });
   }, [categoryId, query]);
@@ -35,7 +43,7 @@ export function MenuBrowser() {
               type="search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="Ex.: massa ou hambúrguer"
+              placeholder="Ex.: massa ou suco"
             />
           </div>
         </div>

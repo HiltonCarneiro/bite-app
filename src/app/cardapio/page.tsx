@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Cardápio" };
 export default function MenuPage() {
   return (
     <div className="container-page page-section section-stack">
-      <PageHeading eyebrow="Cardápio" title="Escolha sua refeição" description="Pesquise os itens e use os filtros para encontrar o que procura. A ordem é fixa por categoria e nome." />
+      <PageHeading eyebrow="Cardápio" title="Escolha seus itens" description="Pesquise pelo nome, descrição ou categoria e use os filtros para encontrar o que procura." />
       <Suspense fallback={<p role="status">Carregando cardápio…</p>}><MenuBrowser /></Suspense>
     </div>
   );

@@ -32,11 +32,11 @@ export function validateCustomizationSelections(
     const maximum = group.maxSelections ?? (group.selectionMode === "single" ? 1 : group.options.length);
 
     if (validIds.length < minimum) {
-      errors[group.id] = minimum === 1 ? `Selecione uma opção em ${group.name}.` : `Selecione pelo menos ${minimum} opções em ${group.name}.`;
+      errors[group.id] = minimum === 1 ? `Selecione uma opção: ${group.name}.` : `Selecione pelo menos ${minimum} opções: ${group.name}.`;
     } else if (validIds.length > maximum) {
-      errors[group.id] = `Selecione no máximo ${maximum} opções em ${group.name}.`;
+      errors[group.id] = `Selecione no máximo ${maximum} opções: ${group.name}.`;
     } else if (validIds.length !== selectedIds.length) {
-      errors[group.id] = `Uma opção selecionada em ${group.name} não está disponível.`;
+      errors[group.id] = `Uma opção selecionada não está disponível: ${group.name}.`;
     }
   }
 

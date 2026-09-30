@@ -21,7 +21,6 @@ html { background: var(--brand-cream); scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  min-width: 320px;
   background: var(--brand-cream);
   color: var(--brand-brown);
   font-family: "Poppins", sans-serif;
@@ -91,6 +90,33 @@ a { color: inherit; }
 .error-message { display: flex; align-items: flex-start; gap: 0.4rem; color: #9d1522; font-weight: 600; font-size: 0.875rem; }
 .status-message { border-left: 4px solid var(--brand-green); background: #edf7ed; border-radius: 0.5rem; padding: 0.75rem 1rem; }
 
+.hero-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  overflow: hidden;
+  border: 0.5rem solid rgb(255 255 255 / 0.84);
+  border-radius: 1.25rem;
+  background: white;
+  box-shadow: 0 1.25rem 3rem rgb(46 31 23 / 0.2);
+  transform: rotate(1deg);
+}
+
+.hero-gallery img:first-child { border-top-left-radius: 0.6rem; }
+.hero-gallery img:nth-child(2) { border-top-right-radius: 0.6rem; }
+.hero-gallery img:nth-child(3) { border-bottom-left-radius: 0.6rem; }
+.hero-gallery img:last-child { border-bottom-right-radius: 0.6rem; }
+
+.hero-orb {
+  position: absolute;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.16);
+  pointer-events: none;
+}
+
+.hero-orb-top { width: 18rem; height: 18rem; right: -6rem; top: -8rem; }
+.hero-orb-bottom { width: 12rem; height: 12rem; left: -5rem; bottom: -7rem; }
+
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
@@ -98,6 +124,10 @@ a { color: inherit; }
 
 @media (min-width: 48rem) {
   .page-section { padding-block: 3rem; }
+}
+
+@media (max-width: 24rem) {
+  .hero-gallery { gap: 0.35rem; border-width: 0.35rem; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
