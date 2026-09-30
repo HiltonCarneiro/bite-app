@@ -43,7 +43,12 @@ O carrinho é salvo em `bite:cart:v1` e os pedidos em `bite:orders:v1`. A camada
 - o cardápio possui Refeições, Lanches, Massas, Bowls, Bebidas e Sobremesas;
 - cada prato oferece escolhas coerentes com sua composição, separando escolhas obrigatórias, adicionais e retirada de ingredientes;
 - bebidas e sobremesas são produtos independentes e não aparecem como personalização de pratos;
-- a busca considera nome, descrição e categoria, sem diferenciar maiúsculas, minúsculas ou acentos.
+- a busca considera nome, descrição e categoria, sem diferenciar maiúsculas, minúsculas ou acentos;
+- os filtros de categoria permanecem na URL e podem ser percorridos com voltar/avançar do navegador;
+- produtos simples podem ser adicionados pelo card, enquanto pratos configuráveis usam a ação `Personalizar`;
+- o resumo móvel do carrinho informa quantidade e subtotal sem cobrir o final do conteúdo;
+- ações de inclusão e remoção exibem feedback, com opção temporária para desfazer uma remoção;
+- estados reais de carregamento usam skeletons discretos, sem atrasos artificiais.
 
 As mudanças preservam a baseline sem nudges: não há recomendações, popularidade, urgência, escassez ou opções alimentares pré-selecionadas.
 

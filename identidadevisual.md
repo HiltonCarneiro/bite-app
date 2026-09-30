@@ -255,6 +255,8 @@ Deve conter:
 - preço;
 - ação clara.
 
+Para itens configuráveis, usar `Personalizar`. Para itens sem escolhas adicionais, usar `Adicionar`. As duas ações mantêm hierarquia visual equivalente entre produtos do mesmo nível.
+
 Na baseline, não exibir:
 
 - "mais pedido";

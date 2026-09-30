@@ -239,6 +239,8 @@ Funcionalidades:
 - pesquisar por nome;
 - filtrar por categoria;
 - abrir detalhes de um item.
+- preservar a categoria selecionada em `?categoria=slug`, incluindo o histórico de navegação;
+- adicionar diretamente itens sem personalização e direcionar itens configuráveis para a página de produto.
 
 Regras de neutralidade:
 
@@ -280,6 +282,8 @@ Permitir:
 - editar personalizações;
 - visualizar subtotal e total;
 - avançar para checkout.
+
+Em telas pequenas, um resumo compacto pode oferecer acesso ao carrinho enquanto houver itens, desde que não cubra o final do conteúdo. A remoção pode oferecer uma ação temporária de desfazer, sem alterar as regras do domínio.
 
 Como não existe pagamento real, o total é apenas demonstrativo.
 
@@ -542,6 +546,8 @@ Metas práticas:
 - evitar layout shift;
 - lazy loading para imagens fora da primeira dobra;
 - não instalar bibliotecas pesadas para funções triviais.
+
+Estados reais de transição ou hidratação devem usar skeletons com dimensões próximas ao conteúdo final. Não adicionar atraso artificial para forçar sua exibição e respeitar `prefers-reduced-motion`.
 
 ---
 
