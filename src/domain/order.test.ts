@@ -6,7 +6,10 @@ import { menuItems } from "@/data/menu";
 describe("snapshot do pedido", () => {
   it("cria uma cópia imutável em relação ao carrinho", () => {
     const product = menuItems.find((item) => item.id === "hamburguer-classico")!;
-    const cartItem = createCartItem(product, { "hamburguer-classico-bread": ["hamburguer-classico-bread-brioche"] }, 2, "cart-item");
+    const cartItem = createCartItem(product, {
+      "hamburguer-classico-bread": ["hamburguer-classico-bread-brioche"],
+      "hamburguer-classico-doneness": ["hamburguer-classico-doneness-medium"],
+    }, 2, "cart-item");
     const order = createOrderSnapshot([cartItem], {
       customerName: "Ana",
       fulfillmentMethod: "pickup",

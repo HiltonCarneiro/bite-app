@@ -3,6 +3,7 @@ import { expect, test } from "@playwright/test";
 async function addClassicBurger(page: import("@playwright/test").Page) {
   await page.goto("/produto/hamburguer-classico");
   await page.getByRole("radio", { name: /Brioche/ }).check();
+  await page.getByRole("radio", { name: /Ao ponto/ }).check();
   await page.getByRole("button", { name: "Adicionar ao carrinho" }).click();
   await expect(page).toHaveURL(/\/carrinho/);
 }
@@ -18,7 +19,8 @@ test("fluxo completo do pedido até o histórico e detalhe", async ({ page }) =>
   await page.getByLabel("Pesquisar no cardápio").fill("Hambúrguer");
   await page.getByRole("link", { name: "Ver detalhes" }).click();
   await page.getByRole("radio", { name: /Brioche/ }).check();
-  await page.getByRole("checkbox", { name: /Queijo/ }).check();
+  await page.getByRole("radio", { name: /Ao ponto/ }).check();
+  await page.getByRole("checkbox", { name: /Queijo extra/ }).check();
   await page.getByRole("button", { name: "Adicionar ao carrinho" }).click();
 
   await expect(page.getByText("Item adicionado ao carrinho.")).toBeVisible();
@@ -42,9 +44,11 @@ test("fluxo completo do pedido até o histórico e detalhe", async ({ page }) =>
 
 test("informa escolhas obrigatórias e impede inclusão incompleta", async ({ page }) => {
   await page.goto("/produto/hamburguer-classico");
-  await expect(page.getByText("Selecione uma opção em Pão.")).toBeVisible();
+  await expect(page.getByText("Selecione uma opção: Escolha o pão.")).toBeVisible();
   await expect(page.getByRole("button", { name: "Adicionar ao carrinho" })).toBeDisabled();
   await page.getByRole("radio", { name: /Brioche/ }).check();
+  await expect(page.getByRole("button", { name: "Adicionar ao carrinho" })).toBeDisabled();
+  await page.getByRole("radio", { name: /Ao ponto/ }).check();
   await expect(page.getByRole("button", { name: "Adicionar ao carrinho" })).toBeEnabled();
 });
 
@@ -54,6 +58,7 @@ test("altera quantidade, edita a configuração e remove o item", async ({ page 
   await expect(page.getByLabel("2 unidades")).toBeVisible();
   await page.getByRole("link", { name: "Editar" }).click();
   await expect(page.getByRole("radio", { name: /Brioche/ })).toBeChecked();
+  await expect(page.getByRole("radio", { name: /Ao ponto/ })).toBeChecked();
   await page.getByRole("radio", { name: /Pão com gergelim/ }).check();
   await page.getByRole("button", { name: "Salvar alterações" }).click();
   await expect(page.getByText("Item atualizado no carrinho.")).toBeVisible();
@@ -81,10 +86,29 @@ test("permite interações críticas somente com teclado", async ({ page }) => {
   await firstRequiredRadio.focus();
   await page.keyboard.press("Space");
   await expect(firstRequiredRadio).toBeChecked();
+  const donenessRadio = page.getByRole("radio", { name: /Ao ponto/ });
+  await donenessRadio.focus();
+  await page.keyboard.press("Space");
+  await expect(donenessRadio).toBeChecked();
   const addButton = page.getByRole("button", { name: "Adicionar ao carrinho" });
   await expect(addButton).toBeEnabled();
   await addButton.focus();
   await expect(addButton).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/\/carrinho/);
+});
+
+test("adiciona bebida e sobremesa como produtos independentes", async ({ page }) => {
+  await page.goto("/cardapio?categoria=bebidas");
+  await page.getByRole("link", { name: "Ver detalhes" }).first().click();
+  await expect(page.getByRole("heading", { name: "Sem personalizações" })).toBeVisible();
+  await page.getByRole("button", { name: "Adicionar ao carrinho" }).click();
+
+  await page.getByRole("link", { name: "Cardápio", exact: true }).click();
+  await page.getByRole("group", { name: "Filtrar por categoria" }).getByText("Sobremesas", { exact: true }).click();
+  await page.getByRole("link", { name: "Ver detalhes" }).first().click();
+  await page.getByRole("button", { name: "Adicionar ao carrinho" }).click();
+
+  await expect(page.getByRole("heading", { name: "Água sem gás" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Brownie" })).toBeVisible();
 });
