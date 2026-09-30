@@ -27,5 +27,9 @@ describe("CartView", () => {
     expect(useCartStore.getState().items[0].quantity).toBe(2);
     await user.click(screen.getByRole("button", { name: "Remover" }));
     expect(screen.getByRole("heading", { name: "Seu carrinho está vazio" })).toBeInTheDocument();
+    expect(screen.getByText("Item removido do carrinho.")).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "Desfazer" }));
+    expect(screen.getByRole("heading", { name: "Hambúrguer Clássico" })).toBeInTheDocument();
+    expect(useCartStore.getState().items).toHaveLength(1);
   });
 });

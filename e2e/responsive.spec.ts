@@ -40,5 +40,5 @@ test("conteúdo principal continua disponível com zoom de 200%", async ({ page 
   await expect(page.getByRole("heading", { name: "Escolha seus itens" })).toBeVisible();
   await page.evaluate(() => { document.documentElement.style.zoom = "2"; });
   await expect(page.getByLabel("Pesquisar no cardápio")).toBeVisible();
-  await expect(page.getByRole("link", { name: "Ver detalhes" }).first()).toBeVisible();
+  await expect(page.getByRole("link", { name: "Personalizar" }).first()).toBeVisible();
 });

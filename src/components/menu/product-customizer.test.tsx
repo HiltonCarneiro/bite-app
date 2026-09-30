@@ -20,6 +20,7 @@ describe("ProductCustomizer", () => {
     render(<ProductCustomizer item={product} />);
     const submit = screen.getByRole("button", { name: "Adicionar ao carrinho" });
     expect(submit).toBeDisabled();
+    expect(screen.getAllByText("Escolha 1 opção.", { exact: true }).length).toBeGreaterThanOrEqual(2);
     expect(screen.getByText("Selecione uma opção: Escolha o pão.")).toBeInTheDocument();
     await user.click(screen.getByRole("radio", { name: /Brioche/ }));
     expect(submit).toBeDisabled();

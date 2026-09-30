@@ -17,13 +17,15 @@ test("fluxo completo do pedido até o histórico e detalhe", async ({ page }) =>
   await page.goto("/");
   await page.getByRole("link", { name: /Abrir cardápio/ }).click();
   await page.getByLabel("Pesquisar no cardápio").fill("Hambúrguer");
-  await page.getByRole("link", { name: "Ver detalhes" }).click();
+  await page.getByRole("link", { name: "Personalizar" }).click();
   await page.getByRole("radio", { name: /Brioche/ }).check();
   await page.getByRole("radio", { name: /Ao ponto/ }).check();
   await page.getByRole("checkbox", { name: /Queijo extra/ }).check();
+  await expect(page.getByText("R$ 31,90", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Adicionar ao carrinho" }).click();
 
   await expect(page.getByText("Item adicionado ao carrinho.")).toBeVisible();
+  await expect(page.getByRole("link", { name: /Carrinho 1 item no carrinho/ })).toBeVisible();
   await page.getByRole("link", { name: "Continuar para checkout" }).click();
   await page.getByLabel("Nome para retirada (obrigatório)").fill("Ana Silva");
   await page.getByRole("radio", { name: /PIX/ }).check();
@@ -66,6 +68,9 @@ test("altera quantidade, edita a configuração e remove o item", async ({ page 
   await expect(page.getByRole("heading", { name: "Hambúrguer Clássico" })).toHaveCount(1);
   await page.getByRole("button", { name: "Remover" }).click();
   await expect(page.getByRole("heading", { name: "Seu carrinho está vazio" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Desfazer" })).toBeVisible();
+  await page.getByRole("button", { name: "Desfazer" }).click();
+  await expect(page.getByRole("heading", { name: "Hambúrguer Clássico" })).toBeVisible();
 });
 
 test("permite interações críticas somente com teclado", async ({ page }) => {
@@ -78,7 +83,7 @@ test("permite interações críticas somente com teclado", async ({ page }) => {
   const searchInput = page.getByLabel("Pesquisar no cardápio");
   await searchInput.focus();
   await page.keyboard.type("Hambúrguer");
-  const productLink = page.getByRole("link", { name: "Ver detalhes" });
+  const productLink = page.getByRole("link", { name: "Personalizar" });
   await productLink.focus();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/\/produto\/hamburguer-classico/);
@@ -99,16 +104,32 @@ test("permite interações críticas somente com teclado", async ({ page }) => {
 });
 
 test("adiciona bebida e sobremesa como produtos independentes", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/cardapio?categoria=bebidas");
-  await page.getByRole("link", { name: "Ver detalhes" }).first().click();
-  await expect(page.getByRole("heading", { name: "Sem personalizações" })).toBeVisible();
-  await page.getByRole("button", { name: "Adicionar ao carrinho" }).click();
+  const waterCard = page.getByRole("article").filter({ hasText: "Água sem gás" });
+  await waterCard.getByRole("button", { name: "Adicionar" }).click();
+  await expect(page.getByText("Água sem gás adicionado ao carrinho.")).toBeVisible();
+  await expect(page.getByRole("link", { name: /Ver carrinho com 1 item/ })).toBeVisible();
 
-  await page.getByRole("link", { name: "Cardápio", exact: true }).click();
   await page.getByRole("group", { name: "Filtrar por categoria" }).getByText("Sobremesas", { exact: true }).click();
-  await page.getByRole("link", { name: "Ver detalhes" }).first().click();
-  await page.getByRole("button", { name: "Adicionar ao carrinho" }).click();
+  await expect(page).toHaveURL(/categoria=sobremesas/);
+  const brownieCard = page.getByRole("article").filter({ hasText: "Brownie" });
+  await brownieCard.getByRole("button", { name: "Adicionar" }).click();
+  await expect(page.getByRole("link", { name: /Ver carrinho com 2 itens/ })).toBeVisible();
+  await page.getByRole("link", { name: /Ver carrinho com 2 itens/ }).click();
 
   await expect(page.getByRole("heading", { name: "Água sem gás" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Brownie" })).toBeVisible();
+});
+
+test("mantém filtros na URL e permite voltar pelo histórico", async ({ page }) => {
+  await page.goto("/cardapio");
+  const categories = page.getByRole("group", { name: "Filtrar por categoria" });
+  await categories.getByText("Massas", { exact: true }).click();
+  await expect(page).toHaveURL(/categoria=massas/);
+  await expect(page.getByRole("radio", { name: /Massas/ })).toBeChecked();
+  await categories.getByText("Bebidas", { exact: true }).click();
+  await expect(page).toHaveURL(/categoria=bebidas/);
+  await page.goBack();
+  await expect(page.getByRole("radio", { name: /Massas/ })).toBeChecked();
 });
