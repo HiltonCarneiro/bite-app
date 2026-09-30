@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { CheckCircle2, SearchX } from "lucide-react";
 import { EmptyState } from "@/components/ui/empty-state";
+import { ListLoadingSkeleton } from "@/components/ui/loading-skeletons";
 import { formatCurrency, fulfillmentMethodLabels, getOrderDisplayCode } from "@/lib/format";
 import { useOrderStore } from "@/store/order-store";
 
 export function OrderConfirmation({ id }: { id: string }) {
   const orders = useOrderStore((state) => state.orders);
   const hasHydrated = useOrderStore((state) => state.hasHydrated);
-  if (!hasHydrated) return <p role="status">Carregando confirmação…</p>;
+  if (!hasHydrated) return <ListLoadingSkeleton label="Carregando confirmação…" />;
   const order = orders.find((candidate) => candidate.id === id);
   if (!order) return <EmptyState icon={SearchX} title="Pedido não encontrado" description="Este pedido não está salvo neste navegador ou o endereço está incorreto." action={<Link className="button-primary" href="/pedidos">Ver pedidos</Link>} />;
 

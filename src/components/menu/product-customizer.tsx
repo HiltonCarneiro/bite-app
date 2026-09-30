@@ -4,10 +4,11 @@ import { AlertCircle, Check, ShoppingCart } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { QuantityControl } from "@/components/cart/quantity-control";
+import { OptionsLoadingSkeleton } from "@/components/ui/loading-skeletons";
 import { calculateConfiguredUnitPrice, createCartItem, selectionsToOptions, validateCustomizationSelections } from "@/domain/cart";
 import { formatCurrency } from "@/lib/format";
 import { useCartStore } from "@/store/cart-store";
-import type { CartItem, CustomizationSelections, MenuItem } from "@/types";
+import type { CartItem, CustomizationGroup, CustomizationSelections, MenuItem } from "@/types";
 
 export function ProductCustomizer({ item }: { item: MenuItem }) {
   const searchParams = useSearchParams();
@@ -16,7 +17,7 @@ export function ProductCustomizer({ item }: { item: MenuItem }) {
   const hasHydrated = useCartStore((state) => state.hasHydrated);
   const editingItem = editId ? cartItems.find((cartItem) => cartItem.id === editId && cartItem.menuItemId === item.id) : undefined;
 
-  if (!hasHydrated) return <p role="status">Carregando opções do produto…</p>;
+  if (!hasHydrated) return <OptionsLoadingSkeleton />;
 
   return <ProductCustomizerReady key={editId ?? "new-item"} item={item} editId={editId} editingItem={editingItem} />;
 }
@@ -25,6 +26,17 @@ interface ProductCustomizerReadyProps {
   item: MenuItem;
   editId: string | null;
   editingItem?: CartItem;
+}
+
+function getSelectionInstruction(group: CustomizationGroup) {
+  const minimum = group.minSelections ?? (group.required ? 1 : 0);
+  const maximum = group.maxSelections ?? (group.selectionMode === "single" ? 1 : undefined);
+
+  if (group.selectionMode === "single") return group.required ? "Escolha 1 opção" : "Escolha até 1 opção";
+  if (minimum > 0 && maximum === minimum) return `Escolha ${minimum} opções`;
+  if (minimum > 0 && maximum) return `Escolha de ${minimum} a ${maximum} opções`;
+  if (maximum) return `Escolha até ${maximum} opções`;
+  return "Escolha quantas opções desejar";
 }
 
 function ProductCustomizerReady({ item, editId, editingItem }: ProductCustomizerReadyProps) {
@@ -84,7 +96,7 @@ function ProductCustomizerReady({ item, editId, editingItem }: ProductCustomizer
         return (
           <fieldset key={group.id} className="m-0 grid gap-3 rounded-2xl border border-[#c8bdb5] bg-white p-4" aria-describedby={`${instructionId}${validation.errors[group.id] ? ` ${errorId}` : ""}`}>
             <legend className="px-2 text-lg font-semibold">{group.name} {group.required ? <span className="text-sm font-normal">(obrigatório)</span> : <span className="text-sm font-normal">(opcional)</span>}</legend>
-            <p id={instructionId} className="m-0 text-sm text-[#5f5a57]">{group.description}</p>
+            <p id={instructionId} className="m-0 text-sm text-[#5f5a57]"><strong className="text-[#2e1f17]">{getSelectionInstruction(group)}.</strong> {group.description}</p>
             <div className="grid gap-3 sm:grid-cols-2">
               {group.options.map((option) => {
                 const selected = selectedIds.includes(option.id);

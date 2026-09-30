@@ -4,13 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, SearchX } from "lucide-react";
 import { EmptyState } from "@/components/ui/empty-state";
+import { ListLoadingSkeleton } from "@/components/ui/loading-skeletons";
 import { formatCurrency, formatDateTime, fulfillmentMethodLabels, getOrderDisplayCode, paymentMethodLabels } from "@/lib/format";
 import { useOrderStore } from "@/store/order-store";
 
 export function OrderDetails({ id }: { id: string }) {
   const orders = useOrderStore((state) => state.orders);
   const hasHydrated = useOrderStore((state) => state.hasHydrated);
-  if (!hasHydrated) return <p role="status">Carregando pedido…</p>;
+  if (!hasHydrated) return <ListLoadingSkeleton label="Carregando pedido…" />;
   const order = orders.find((candidate) => candidate.id === id);
   if (!order) return <EmptyState icon={SearchX} title="Pedido não encontrado" description="Este pedido não está salvo neste navegador ou o endereço está incorreto." action={<Link className="button-primary" href="/pedidos">Voltar aos pedidos</Link>} />;
 

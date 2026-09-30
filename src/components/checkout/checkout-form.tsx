@@ -7,6 +7,7 @@ import { AlertCircle, LockKeyhole } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { EmptyState } from "@/components/ui/empty-state";
+import { OptionsLoadingSkeleton } from "@/components/ui/loading-skeletons";
 import { calculateCartSubtotal } from "@/domain/cart";
 import { createOrderSnapshot } from "@/domain/order";
 import { formatCurrency } from "@/lib/format";
@@ -39,7 +40,7 @@ export function CheckoutForm() {
     defaultValues: { customerName: "", fulfillmentMethod: "pickup", notes: "" },
   });
 
-  if (!hasHydrated) return <p role="status">Carregando checkout…</p>;
+  if (!hasHydrated) return <OptionsLoadingSkeleton label="Carregando checkout…" />;
   if (items.length === 0) return <EmptyState icon={ShoppingCart} title="Não há itens para finalizar" description="Adicione ao menos um item ao carrinho antes de abrir o checkout." action={<Link className="button-primary" href="/cardapio">Ver cardápio</Link>} />;
 
   const subtotal = calculateCartSubtotal(items);

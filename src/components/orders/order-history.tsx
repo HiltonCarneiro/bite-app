@@ -3,14 +3,15 @@
 import Link from "next/link";
 import { ClipboardList, ChevronRight } from "lucide-react";
 import { EmptyState } from "@/components/ui/empty-state";
+import { ListLoadingSkeleton } from "@/components/ui/loading-skeletons";
 import { formatCurrency, formatDateTime, getOrderDisplayCode, paymentMethodLabels } from "@/lib/format";
 import { useOrderStore } from "@/store/order-store";
 
 export function OrderHistory() {
   const orders = useOrderStore((state) => state.orders);
   const hasHydrated = useOrderStore((state) => state.hasHydrated);
-  if (!hasHydrated) return <p role="status">Carregando seus pedidos…</p>;
-  if (orders.length === 0) return <EmptyState icon={ClipboardList} title="Nenhum pedido por aqui" description="Os pedidos confirmados neste navegador aparecerão nesta página." action={<Link className="button-primary" href="/cardapio">Fazer um pedido</Link>} />;
+  if (!hasHydrated) return <ListLoadingSkeleton label="Carregando seus pedidos…" />;
+  if (orders.length === 0) return <EmptyState icon={ClipboardList} title="Você ainda não fez nenhum pedido" description="Os pedidos confirmados neste navegador aparecerão nesta página." action={<Link className="button-primary" href="/cardapio">Explorar cardápio</Link>} />;
 
   return (
     <ul className="m-0 grid list-none gap-4 p-0">
