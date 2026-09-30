@@ -1,12 +1,30 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { Settings2, ShoppingCart } from "lucide-react";
+import { createCartItem } from "@/domain/cart";
 import { formatCurrency } from "@/lib/format";
+import { useCartStore } from "@/store/cart-store";
 import type { MenuItem } from "@/types";
 
-export function ProductCard({ item }: { item: MenuItem }) {
+interface ProductCardProps {
+  item: MenuItem;
+  onAdded?: (itemName: string) => void;
+}
+
+export function ProductCard({ item, onAdded }: ProductCardProps) {
+  const addItem = useCartStore((state) => state.addItem);
+  const hasHydrated = useCartStore((state) => state.hasHydrated);
+  const hasCustomizations = item.customizationGroups.length > 0;
   const hasVariablePrice = item.customizationGroups.some((group) =>
     group.options.some((option) => option.priceDelta > 0),
   );
+
+  const handleAdd = () => {
+    addItem(createCartItem(item, {}, 1));
+    onAdded?.(item.name);
+  };
 
   return (
     <article className="card flex h-full flex-col overflow-hidden">
@@ -25,10 +43,12 @@ export function ProductCard({ item }: { item: MenuItem }) {
         </div>
         <p className="m-0 flex-1 text-sm text-[#5f5a57]">{item.description}</p>
         <p className="m-0 font-semibold">{hasVariablePrice ? "A partir de " : ""}{formatCurrency(item.basePrice)}</p>
-        {item.available ? (
-          <Link className="button-secondary w-full" href={`/produto/${item.slug}`}>Ver detalhes</Link>
+        {item.available && hasCustomizations ? (
+          <Link className="button-secondary mt-auto w-full" href={`/produto/${item.slug}`}><Settings2 aria-hidden="true" size={18} />Personalizar</Link>
+        ) : item.available ? (
+          <button className="button-secondary mt-auto w-full" type="button" onClick={handleAdd} disabled={!hasHydrated}><ShoppingCart aria-hidden="true" size={18} />Adicionar</button>
         ) : (
-          <button className="button-secondary w-full" type="button" disabled aria-disabled="true">Item indisponível</button>
+          <button className="button-secondary mt-auto w-full" type="button" disabled aria-disabled="true">Item indisponível</button>
         )}
       </div>
     </article>
