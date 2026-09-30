@@ -25,12 +25,13 @@ A tagline é institucional e não deve ser usada para favorecer um item específ
 
 ## 2. Conceito do logo
 
-O logo principal deve utilizar:
+O asset oficial fornecido ao projeto utiliza:
 
-- palavra **Bite**;
-- tipografia arredondada e amigável;
-- cor principal escura;
-- detalhe/folha ou elemento gráfico em laranja associado ao `i`.
+- ícone quadrado arredondado em laranja;
+- símbolo branco inspirado na letra `b` e em uma mordida;
+- versão de interface acompanhada da palavra **Bite** quando houver espaço.
+
+O arquivo oficial está em `public/brand/bite-logo.png`. O mesmo símbolo identifica a aplicação nos metadados e pode aparecer isolado em espaços compactos, sempre com nome acessível quando funcionar como link.
 
 ### Versões permitidas
 
@@ -198,6 +199,15 @@ Padrão:
 - ícones entre 20 e 24 px;
 - ícones decorativos com `aria-hidden="true"`;
 - ícones funcionais devem ter texto visível ou nome acessível.
+
+### 9.1 Fotografia do cardápio
+
+- usar fotografias reais armazenadas localmente;
+- manter recorte 4:3 consistente nos cards;
+- evitar marcas, texto incorporado e marcas-d'água;
+- descrever imagens informativas em português;
+- registrar fonte e licença dos assets;
+- não depender de hotlinks em produção.
 
 ---
 
