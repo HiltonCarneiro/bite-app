@@ -5,4 +5,3 @@ export function normalizeSearchText(value: string) {
     .toLocaleLowerCase("pt-BR")
     .trim();
 }
-

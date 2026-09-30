@@ -18,4 +18,3 @@ As imagens desta pasta foram baixadas em setembro de 2026, recortadas em 4:3 e c
 | `brownie.webp` | [Mila — brownies em um prato](https://unsplash.com/photos/qY2aflptZMg) |
 | `pudim.webp` | [Pudim com calda de caramelo](https://unsplash.com/photos/PerJ_q-EuKw) |
 | `frutas-estacao.webp` | [Carissa Gan — tigela de frutas](https://unsplash.com/photos/YlwOMESLPQo) |
-
