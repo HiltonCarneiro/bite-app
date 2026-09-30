@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { MobileCartSummary } from "@/components/cart/mobile-cart-summary";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 
@@ -18,8 +19,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <a className="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
         <SiteHeader />
-        <main id="conteudo-principal">{children}</main>
+        <main id="conteudo-principal" className="pb-20 sm:pb-0">{children}</main>
         <SiteFooter />
+        <MobileCartSummary />
       </body>
     </html>
   );
