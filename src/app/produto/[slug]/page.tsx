@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Info } from "lucide-react";
 import { ProductCustomizer } from "@/components/menu/product-customizer";
 import { findMenuItemBySlug, menuItems } from "@/data/menu";
 import { formatCurrency } from "@/lib/format";
@@ -46,6 +46,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <p className="m-0 text-[#5f5a57]">{item.description}</p>
             <p className="m-0 text-lg font-semibold">{hasVariablePrice ? "A partir de " : ""}{formatCurrency(item.basePrice)}</p>
           </header>
+          <section className="card flex items-start gap-3 p-4" aria-labelledby="product-information-title">
+            <Info aria-hidden="true" className="mt-0.5 shrink-0 text-[#8f3800]" size={22} />
+            <div className="grid gap-1">
+              <h2 id="product-information-title" className="m-0 text-lg font-semibold">Informações do item</h2>
+              <p className="m-0 text-sm"><strong>Ingredientes completos:</strong> não informados neste protótipo.</p>
+              <p className="m-0 text-sm"><strong>Alergênicos:</strong> não informados. Em caso de alergia, confirme a composição antes de consumir.</p>
+            </div>
+          </section>
         </div>
         {item.available ? <ProductCustomizer item={item} /> : (
           <section className="card h-fit p-6"><h2 className="m-0 text-xl font-semibold">Item temporariamente indisponível</h2><p>Volte ao cardápio para consultar os demais itens.</p><Link className="button-primary" href="/cardapio">Ver outros itens</Link></section>

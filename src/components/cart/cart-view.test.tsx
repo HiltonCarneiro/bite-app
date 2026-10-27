@@ -23,6 +23,8 @@ describe("CartView", () => {
       "hamburguer-classico-doneness": ["hamburguer-classico-doneness-medium"],
     }, 1, "cart-test")], hasHydrated: true });
     render(<CartView />);
+    expect(screen.getByText("Taxa de retirada")).toBeInTheDocument();
+    expect(screen.getByText(/Não há assinatura, entrega ou cobrança recorrente/)).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Aumentar quantidade" }));
     expect(useCartStore.getState().items[0].quantity).toBe(2);
     await user.click(screen.getByRole("button", { name: "Remover" }));

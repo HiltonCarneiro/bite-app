@@ -22,7 +22,7 @@ test("home permanece utilizável sem rolagem horizontal nas larguras previstas",
 
 test("rotas principais permanecem sem rolagem horizontal em celulares", async ({ page }) => {
   test.setTimeout(120_000);
-  const routes = ["/cardapio", "/produto/hamburguer-classico", "/carrinho", "/checkout", "/pedidos"];
+  const routes = ["/cardapio", "/produto/hamburguer-classico", "/carrinho", "/checkout", "/pedidos", "/academico/refinamento"];
 
   for (const width of mobileWidths) {
     await page.setViewportSize({ width, height: 900 });

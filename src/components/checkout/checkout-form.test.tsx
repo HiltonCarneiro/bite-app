@@ -29,6 +29,14 @@ describe("CheckoutForm", () => {
     expect(screen.getByText("Selecione um método de pagamento.")).toBeInTheDocument();
   });
 
+  it("expõe custos e informa que o pedido não é recorrente", () => {
+    render(<CheckoutForm />);
+    expect(screen.getByText("Subtotal dos itens")).toBeInTheDocument();
+    expect(screen.getByText("Taxa de retirada")).toBeInTheDocument();
+    expect(screen.getByText("R$ 0,00", { exact: true })).toBeInTheDocument();
+    expect(screen.getByText(/Nenhuma assinatura ou cobrança recorrente/)).toBeInTheDocument();
+  });
+
   it("cria o pedido e limpa o carrinho após dados válidos", async () => {
     const user = userEvent.setup();
     render(<CheckoutForm />);

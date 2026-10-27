@@ -18,6 +18,9 @@ test("fluxo completo do pedido até o histórico e detalhe", async ({ page }) =>
   await page.getByRole("link", { name: /Abrir cardápio/ }).click();
   await page.getByLabel("Pesquisar no cardápio").fill("Hambúrguer");
   await page.getByRole("link", { name: "Personalizar" }).click();
+  await expect(page.getByRole("heading", { name: "Informações do item" })).toBeVisible();
+  await expect(page.getByText(/Alergênicos:.*não informados/)).toBeVisible();
+  await expect(page.getByText(/Nenhuma personalização vem selecionada/)).toBeVisible();
   await page.getByRole("radio", { name: /Brioche/ }).check();
   await page.getByRole("radio", { name: /Ao ponto/ }).check();
   await page.getByRole("checkbox", { name: /Queijo extra/ }).check();
@@ -27,6 +30,8 @@ test("fluxo completo do pedido até o histórico e detalhe", async ({ page }) =>
   await expect(page.getByText("Item adicionado ao carrinho.")).toBeVisible();
   await expect(page.getByRole("link", { name: /Carrinho 1 item no carrinho/ })).toBeVisible();
   await page.getByRole("link", { name: "Continuar para checkout" }).click();
+  await expect(page.getByText("Taxa de retirada")).toBeVisible();
+  await expect(page.getByText(/Nenhuma assinatura ou cobrança recorrente/)).toBeVisible();
   await page.getByLabel("Nome para retirada (obrigatório)").fill("Ana Silva");
   await page.getByRole("radio", { name: /PIX/ }).check();
   await page.getByLabel("Observações do pedido (opcional)").fill("Retirar no fim da tarde.");
