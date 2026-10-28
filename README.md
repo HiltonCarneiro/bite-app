@@ -19,6 +19,7 @@ Rotas:
 - `/pedido/[id]/confirmado`
 - `/pedidos`
 - `/pedidos/[id]`
+- `/academico/refinamento`
 
 ## Stack
 
@@ -51,6 +52,12 @@ O carrinho é salvo em `bite:cart:v1` e os pedidos em `bite:orders:v1`. A camada
 - estados reais de carregamento usam skeletons discretos, sem atrasos artificiais.
 
 As mudanças preservam a baseline sem nudges: não há recomendações, popularidade, urgência, escassez ou opções alimentares pré-selecionadas.
+
+## Refinamento acadêmico de UX
+
+A rota `/academico/refinamento` demonstra, separadamente do fluxo de compra, como as 16 cartas de vieses e os insights verificáveis dos casos Growth.Design foram considerados. A matriz detalhada está em `docs/academico/matriz_vieses_growth_bite.xlsx` e o relatório curto em `docs/academico/relatorio_refinamento_ux.md`.
+
+O caso Amazon está desdobrado por insight. O caso Facebook permanece explicitamente pendente de fonte porque a página pública não expôs os slides completos; nenhum conteúdo foi atribuído ao estudo sem verificação.
 
 ## Acessibilidade
 

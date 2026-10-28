@@ -1,11 +1,11 @@
 "use client";
 
-import { AlertCircle, Check, ShoppingCart } from "lucide-react";
+import { AlertCircle, Check, Info, ShoppingCart } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { QuantityControl } from "@/components/cart/quantity-control";
 import { OptionsLoadingSkeleton } from "@/components/ui/loading-skeletons";
-import { calculateConfiguredUnitPrice, createCartItem, selectionsToOptions, validateCustomizationSelections } from "@/domain/cart";
+import { calculateConfiguredUnitPrice, calculateSelectedOptionsTotal, createCartItem, selectionsToOptions, validateCustomizationSelections } from "@/domain/cart";
 import { formatCurrency } from "@/lib/format";
 import { useCartStore } from "@/store/cart-store";
 import type { CartItem, CustomizationGroup, CustomizationSelections, MenuItem } from "@/types";
@@ -55,6 +55,7 @@ function ProductCustomizerReady({ item, editId, editingItem }: ProductCustomizer
 
   const validation = useMemo(() => validateCustomizationSelections(item, selections), [item, selections]);
   const selectedOptions = useMemo(() => selectionsToOptions(item, selections), [item, selections]);
+  const selectedOptionsTotal = calculateSelectedOptionsTotal(selectedOptions);
   const unitPrice = calculateConfiguredUnitPrice(item.basePrice, selectedOptions);
   const total = unitPrice * quantity;
 
@@ -79,6 +80,16 @@ function ProductCustomizerReady({ item, editId, editingItem }: ProductCustomizer
 
   return (
     <form className="grid gap-6" onSubmit={handleSubmit} noValidate>
+      <section className="card flex items-start gap-3 p-4" aria-labelledby="choice-consent-title">
+        <Info aria-hidden="true" className="mt-0.5 shrink-0 text-[#8f3800]" size={22} />
+        <div>
+          <h2 id="choice-consent-title" className="m-0 text-lg font-semibold">Suas escolhas, sem seleção automática</h2>
+          <p className="m-0 mt-1 text-sm text-[#5f5a57]">
+            Nenhuma personalização vem selecionada. Opções pagas só entram no total depois que você as marcar.
+            {editingItem ? " Nesta edição, suas escolhas anteriores foram restauradas." : ""}
+          </p>
+        </div>
+      </section>
       {editId && !editingItem && (
         <p className="error-message" role="alert"><AlertCircle aria-hidden="true" size={20} />Não foi possível localizar este item no carrinho. Você pode criar uma nova configuração.</p>
       )}
@@ -146,8 +157,13 @@ function ProductCustomizerReady({ item, editId, editingItem }: ProductCustomizer
         <QuantityControl value={quantity} onChange={setQuantity} />
       </section>
 
-      <div className="grid gap-3 rounded-2xl border border-[#ded6d0] bg-white p-4 shadow-lg sm:sticky sm:bottom-3 sm:z-20 sm:grid-cols-[1fr_auto] sm:items-center">
-        <div><p className="m-0 text-sm text-[#5f5a57]">Total desta configuração</p><p className="m-0 text-2xl font-bold" aria-live="polite">{formatCurrency(total)}</p></div>
+      <div className="grid gap-4 rounded-2xl border border-[#ded6d0] bg-white p-4 shadow-lg sm:sticky sm:bottom-3 sm:z-20 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
+        <dl className="m-0 grid gap-1 text-sm">
+          <div className="flex justify-between gap-4"><dt>Preço base por unidade</dt><dd className="m-0 font-semibold">{formatCurrency(item.basePrice)}</dd></div>
+          <div className="flex justify-between gap-4"><dt>Acréscimos por unidade</dt><dd className="m-0 font-semibold">{formatCurrency(selectedOptionsTotal)}</dd></div>
+          <div className="flex justify-between gap-4"><dt>Quantidade</dt><dd className="m-0 font-semibold">{quantity}</dd></div>
+          <div className="mt-1 flex justify-between gap-4 border-t border-[#ded6d0] pt-2 text-lg"><dt>Total desta configuração</dt><dd className="m-0 text-2xl font-bold" aria-live="polite">{formatCurrency(total)}</dd></div>
+        </dl>
         <button className="button-primary" type="submit" disabled={!validation.valid || !item.available} aria-describedby={!validation.valid ? "submit-help" : undefined}>
           <ShoppingCart aria-hidden="true" size={20} />{editingItem ? "Salvar alterações" : "Adicionar ao carrinho"}
         </button>

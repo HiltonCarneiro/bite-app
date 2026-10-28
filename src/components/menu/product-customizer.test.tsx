@@ -18,6 +18,8 @@ describe("ProductCustomizer", () => {
     const user = userEvent.setup();
     const product = menuItems.find((item) => item.id === "hamburguer-classico")!;
     render(<ProductCustomizer item={product} />);
+    expect(screen.getByRole("heading", { name: "Suas escolhas, sem seleção automática" })).toBeInTheDocument();
+    expect(screen.getByText(/Nenhuma personalização vem selecionada/)).toBeInTheDocument();
     const submit = screen.getByRole("button", { name: "Adicionar ao carrinho" });
     expect(submit).toBeDisabled();
     expect(screen.getAllByText("Escolha 1 opção.", { exact: true }).length).toBeGreaterThanOrEqual(2);
@@ -35,6 +37,8 @@ describe("ProductCustomizer", () => {
     await user.click(screen.getByRole("radio", { name: /Brioche/ }));
     await user.click(screen.getByRole("radio", { name: /Ao ponto/ }));
     await user.click(screen.getByRole("checkbox", { name: /Queijo extra/ }));
+    expect(screen.getByText("Acréscimos por unidade")).toBeInTheDocument();
+    expect(screen.getByText("R$ 4,00", { exact: true })).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Aumentar quantidade" }));
     await user.click(screen.getByRole("button", { name: "Adicionar ao carrinho" }));
     expect(useCartStore.getState().items[0].quantity).toBe(2);
@@ -58,9 +62,10 @@ describe("ProductCustomizer", () => {
     render(<ProductCustomizer item={product} />);
     await user.click(screen.getByRole("radio", { name: /Brioche/ }));
     await user.click(screen.getByRole("radio", { name: /Ao ponto/ }));
-    const initialPrice = screen.getByText(/27,90/);
+    const initialPrices = screen.getAllByText(/27,90/);
     await user.click(screen.getByRole("checkbox", { name: /Sem tomate/ }));
-    expect(initialPrice).toBeInTheDocument();
+    expect(initialPrices).toHaveLength(2);
+    expect(screen.getAllByText(/27,90/)).toHaveLength(2);
     expect(screen.getAllByText("Sem alteração no preço", { selector: "span" })).toHaveLength(4);
   });
 });

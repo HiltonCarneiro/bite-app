@@ -41,6 +41,8 @@ export function OrderDetails({ id }: { id: string }) {
             <div><dt className="text-sm text-[#5f5a57]">Retirada</dt><dd className="m-0 font-semibold">{fulfillmentMethodLabels[order.fulfillmentMethod]}</dd></div>
             <div><dt className="text-sm text-[#5f5a57]">Pagamento</dt><dd className="m-0 font-semibold">{paymentMethodLabels[order.paymentMethod]}</dd></div>
             {order.notes && <div><dt className="text-sm text-[#5f5a57]">Observações</dt><dd className="m-0 whitespace-pre-wrap">{order.notes}</dd></div>}
+            <div className="flex justify-between border-t border-[#ded6d0] pt-3"><dt>Subtotal dos itens</dt><dd className="m-0 font-semibold">{formatCurrency(order.subtotal)}</dd></div>
+            <div className="flex justify-between"><dt>Taxa de retirada</dt><dd className="m-0 font-semibold">{formatCurrency(0)}</dd></div>
             <div className="flex justify-between border-t border-[#ded6d0] pt-3 text-lg"><dt>Total</dt><dd className="m-0 font-bold">{formatCurrency(order.total)}</dd></div>
           </dl>
           <p className="m-0 text-sm text-[#5f5a57]">Snapshot salvo no momento da confirmação.</p>

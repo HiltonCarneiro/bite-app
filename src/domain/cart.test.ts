@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { calculateCartItemTotal, calculateCartSubtotal, calculateConfiguredUnitPrice, createCartItem, validateCustomizationSelections } from "@/domain/cart";
+import { calculateCartItemTotal, calculateCartSubtotal, calculateConfiguredUnitPrice, calculateSelectedOptionsTotal, createCartItem, validateCustomizationSelections } from "@/domain/cart";
 import { menuItems } from "@/data/menu";
 
 const product = menuItems.find((item) => item.id === "hamburguer-classico")!;
@@ -12,6 +12,10 @@ const validSelections = {
 describe("domínio do carrinho", () => {
   it("calcula o preço unitário configurado", () => {
     expect(calculateConfiguredUnitPrice(20, [{ priceDelta: 3 }, { priceDelta: 4.5 }])).toBe(27.5);
+  });
+
+  it("expõe separadamente o total dos acréscimos selecionados", () => {
+    expect(calculateSelectedOptionsTotal([{ priceDelta: 0 }, { priceDelta: 4 }, { priceDelta: 3 }])).toBe(7);
   });
 
   it("multiplica o preço unitário pela quantidade", () => {

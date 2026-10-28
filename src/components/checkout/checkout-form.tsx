@@ -93,7 +93,12 @@ export function CheckoutForm() {
         <ul className="m-0 grid list-none gap-3 p-0">
           {items.map((item) => <li key={item.id} className="flex justify-between gap-3 border-b border-[#ded6d0] pb-3"><span>{item.quantity} × {item.menuItemName}</span><strong>{formatCurrency(item.unitPrice * item.quantity)}</strong></li>)}
         </ul>
-        <dl className="m-0 flex justify-between gap-4 text-lg"><dt>Total</dt><dd className="m-0 font-bold">{formatCurrency(subtotal)}</dd></dl>
+        <dl className="m-0 grid gap-2">
+          <div className="flex justify-between gap-4"><dt>Subtotal dos itens</dt><dd className="m-0 font-semibold">{formatCurrency(subtotal)}</dd></div>
+          <div className="flex justify-between gap-4"><dt>Taxa de retirada</dt><dd className="m-0 font-semibold">{formatCurrency(0)}</dd></div>
+          <div className="flex justify-between gap-4 border-t border-[#ded6d0] pt-3 text-lg"><dt>Total</dt><dd className="m-0 font-bold">{formatCurrency(subtotal)}</dd></div>
+        </dl>
+        <p className="m-0 text-sm text-[#5f5a57]">Este é um pedido único. Nenhuma assinatura ou cobrança recorrente será criada.</p>
         <p className="m-0 flex items-start gap-2 text-sm text-[#5f5a57]"><LockKeyhole aria-hidden="true" className="shrink-0" size={20} />Nenhum dado financeiro real será solicitado ou armazenado.</p>
         <button className="button-primary w-full" type="submit" disabled={isSubmitting}>{isSubmitting ? "Confirmando…" : "Confirmar pedido"}</button>
         <Link className="button-secondary w-full" href="/carrinho">Voltar ao carrinho</Link>

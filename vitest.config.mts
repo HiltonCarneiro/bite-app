@@ -9,7 +9,7 @@ export default defineConfig({
     globals: true,
     setupFiles: ["./src/test/setup.ts"],
     css: true,
-    exclude: ["e2e/**", "node_modules/**", ".next/**"],
+    exclude: ["e2e/**", "**/node_modules/**", ".next/**"],
   },
   resolve: {
     alias: { "@": path.resolve(process.cwd(), "src") },

@@ -19,6 +19,9 @@ test("páginas principais não apresentam violações automatizadas", async ({ p
   await page.goto("/cardapio");
   await expectNoAxeViolations(page);
 
+  await page.goto("/academico/refinamento");
+  await expectNoAxeViolations(page);
+
   await page.goto("/produto/hamburguer-classico");
   await expectNoAxeViolations(page);
 

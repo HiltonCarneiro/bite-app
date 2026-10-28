@@ -12,6 +12,10 @@ export const calculateConfiguredUnitPrice = (
   selectedOptions: Pick<SelectedOption, "priceDelta">[],
 ) => Math.max(0, basePrice + selectedOptions.reduce((sum, option) => sum + option.priceDelta, 0));
 
+export const calculateSelectedOptionsTotal = (
+  selectedOptions: Pick<SelectedOption, "priceDelta">[],
+) => selectedOptions.reduce((sum, option) => sum + option.priceDelta, 0);
+
 export const calculateCartItemTotal = (unitPrice: number, quantity: number) =>
   unitPrice * quantity;
 
