@@ -19,7 +19,7 @@ test("fluxo completo do pedido até o histórico e detalhe", async ({ page }) =>
   await page.getByLabel("Pesquisar no cardápio").fill("Hambúrguer");
   await page.getByRole("link", { name: "Personalizar" }).click();
   await expect(page.getByRole("heading", { name: "Informações do item" })).toBeVisible();
-  await expect(page.getByText(/Alergênicos:.*não informados/)).toBeVisible();
+  await expect(page.getByText(/Informação não confirmada pelo estabelecimento/).first()).toBeVisible();
   await expect(page.getByText(/Nenhuma personalização vem selecionada/)).toBeVisible();
   await page.getByRole("radio", { name: /Brioche/ }).check();
   await page.getByRole("radio", { name: /Ao ponto/ }).check();

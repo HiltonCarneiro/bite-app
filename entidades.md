@@ -80,6 +80,7 @@ export interface MenuItem {
   imageAlt: string;
   customizationGroups: CustomizationGroup[];
   available: boolean;
+  information: ProductInformation;
 }
 ```
 
@@ -96,6 +97,22 @@ export interface MenuItem {
   - `socialProof`.
 
 Essas propriedades não fazem parte da baseline sem nudges.
+
+### Informações de composição (refinamento de novembro de 2026)
+
+Cada `MenuItem` exige `information: ProductInformation`, contrato único em `src/types/index.ts`:
+
+```ts
+export interface ProductInformation {
+  status: "illustrative" | "unavailable";
+  ingredients: string[];
+  allergens: string[];
+  allergenStatus: "unconfirmed";
+  note?: string;
+}
+```
+
+`ingredients` descreve somente a receita base ilustrativa antes das modificações. As opções têm composição ilustrativa compartilhada em `src/data/product-information.ts`, consultável no mesmo cartão. Retiradas e pontos de preparo recebem instruções próprias. As listas não representam ficha técnica, rótulo validado, ausência de contato cruzado ou segurança para alérgicos. `allergens: []` significa ausência de identificação no exemplo, nunca ausência confirmada de alergênicos. `unavailable` exige mostrar a lacuna e solicitar confirmação. A composição não é persistida nem altera o cálculo dos pedidos.
 
 ---
 

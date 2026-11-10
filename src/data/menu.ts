@@ -1,3 +1,4 @@
+import { productInformation } from "@/data/product-information";
 import type { Category, CustomizationGroup, MenuItem } from "@/types";
 
 export const categories: Category[] = [
@@ -293,79 +294,93 @@ const mushroomPastaGroups: CustomizationGroup[] = [
 
 export const menuItems: MenuItem[] = [
   {
+    information: productInformation["bowl-legumes"],
     id: "bowl-legumes", slug: "bowl-de-legumes", categoryId: "bowls", name: "Bowl de Legumes",
     description: "Arroz, legumes, grão-de-bico, folhas e molho servidos em tigela.", basePrice: 29.9,
     image: "/images/menu/bowl-legumes.webp", imageAlt: "Bowl com arroz, grão-de-bico, folhas e legumes", available: true,
     customizationGroups: bowlVegetablesGroups,
   },
   {
+    information: productInformation["bowl-carne"],
     id: "bowl-carne", slug: "bowl-de-carne", categoryId: "bowls", name: "Bowl de Carne",
     description: "Arroz, tiras de carne, feijão, tomate e molho de ervas servidos em tigela.", basePrice: 34.9,
     image: "/images/menu/bowl-carne.webp", imageAlt: "Bowl com arroz, tiras de carne, legumes e ovo", available: true,
     customizationGroups: bowlBeefGroups,
   },
   {
+    information: productInformation["frango-grelhado"],
     id: "frango-grelhado", slug: "frango-grelhado", categoryId: "meals", name: "Frango Grelhado",
     description: "Frango grelhado com temperos suaves e até dois acompanhamentos à escolha.", basePrice: 32.5,
     image: "/images/menu/frango-grelhado.webp", imageAlt: "Frango grelhado servido sobre salada", available: true,
     customizationGroups: grilledChickenGroups,
   },
   {
+    information: productInformation["peixe-assado"],
     id: "peixe-assado", slug: "peixe-assado", categoryId: "meals", name: "Peixe Assado",
     description: "Peixe assado com limão, ervas e acompanhamentos à escolha.", basePrice: 38,
     image: "/images/menu/peixe-assado.webp", imageAlt: "Peixe assado inteiro com limão e ervas", available: false,
     customizationGroups: bakedFishGroups,
   },
   {
+    information: productInformation["hamburguer-classico"],
     id: "hamburguer-classico", slug: "hamburguer-classico", categoryId: "sandwiches", name: "Hambúrguer Clássico",
     description: "Hambúrguer bovino com queijo, tomate, folhas e molho em pão à escolha.", basePrice: 27.9,
     image: "/images/menu/hamburguer-classico.webp", imageAlt: "Hambúrguer bovino com queijo, cebola e picles", available: true,
     customizationGroups: classicBurgerGroups,
   },
   {
+    information: productInformation["sanduiche-casa"],
     id: "sanduiche-casa", slug: "sanduiche-da-casa", categoryId: "sandwiches", name: "Sanduíche da Casa",
     description: "Frango, queijo, tomate e folhas em pão à escolha.", basePrice: 25.5,
     image: "/images/menu/sanduiche-casa.webp", imageAlt: "Sanduíche de frango com folhas e picles", available: true,
     customizationGroups: houseSandwichGroups,
   },
   {
+    information: productInformation["massa-tomate"],
     id: "massa-tomate", slug: "massa-ao-molho-de-tomate", categoryId: "pasta", name: "Massa ao Molho de Tomate",
     description: "Massa com molho de tomates, ervas e finalizações à escolha.", basePrice: 28.9,
     image: "/images/menu/massa-tomate.webp", imageAlt: "Espaguete com molho de tomate, ervas e tomates-cereja", available: true,
     customizationGroups: tomatoPastaGroups,
   },
   {
+    information: productInformation["massa-cogumelos"],
     id: "massa-cogumelos", slug: "massa-com-cogumelos", categoryId: "pasta", name: "Massa com Cogumelos",
     description: "Massa com molho cremoso, cogumelos salteados e ervas.", basePrice: 33.5,
     image: "/images/menu/massa-cogumelos.webp", imageAlt: "Fettuccine com cogumelos e ervas", available: true,
     customizationGroups: mushroomPastaGroups,
   },
   {
+    information: productInformation["agua-sem-gas"],
     id: "agua-sem-gas", slug: "agua-sem-gas", categoryId: "drinks", name: "Água sem gás",
     description: "Garrafa individual de água sem gás, 500 ml.", basePrice: 4,
     image: "/images/menu/agua-sem-gas.webp", imageAlt: "Copo de água gelada com limão", available: true, customizationGroups: [],
   },
   {
+    information: productInformation["suco-laranja"],
     id: "suco-laranja", slug: "suco-de-laranja", categoryId: "drinks", name: "Suco de laranja",
     description: "Copo individual de suco de laranja, 400 ml.", basePrice: 8,
     image: "/images/menu/suco-laranja.webp", imageAlt: "Copo de suco de laranja com uma rodela da fruta", available: true, customizationGroups: [],
   },
   {
+    information: productInformation["refrigerante"],
     id: "refrigerante", slug: "refrigerante", categoryId: "drinks", name: "Refrigerante",
     description: "Lata individual de refrigerante, 350 ml.", basePrice: 6,
     image: "/images/menu/refrigerante.webp", imageAlt: "Refrigerante sendo servido em um copo com gelo", available: true, customizationGroups: [],
   },
   {
+    information: productInformation["brownie"],
     id: "brownie", slug: "brownie", categoryId: "desserts", name: "Brownie",
     description: "Fatia individual de brownie de chocolate.", basePrice: 9,
     image: "/images/menu/brownie.webp", imageAlt: "Fatias de brownie de chocolate empilhadas em um prato", available: true, customizationGroups: [],
   },
   {
+    information: productInformation["pudim"],
     id: "pudim", slug: "pudim", categoryId: "desserts", name: "Pudim",
     description: "Fatia individual de pudim com calda de caramelo.", basePrice: 8,
     image: "/images/menu/pudim.webp", imageAlt: "Fatia de pudim com calda de caramelo em prato branco", available: true, customizationGroups: [],
   },
   {
+    information: productInformation["frutas-estacao"],
     id: "frutas-estacao", slug: "frutas-da-estacao", categoryId: "desserts", name: "Frutas da estação",
     description: "Porção individual de frutas frescas cortadas.", basePrice: 7,
     image: "/images/menu/frutas-estacao.webp", imageAlt: "Tigela com morango, kiwi, mirtilo e outras frutas", available: true, customizationGroups: [],

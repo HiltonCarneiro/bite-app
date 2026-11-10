@@ -37,6 +37,16 @@ export interface MenuItem {
   imageAlt: string;
   customizationGroups: CustomizationGroup[];
   available: boolean;
+  information: ProductInformation;
+}
+
+/** Composição didática; nunca equivale a uma ficha técnica de restaurante. */
+export interface ProductInformation {
+  status: "illustrative" | "unavailable";
+  ingredients: string[];
+  allergens: string[];
+  allergenStatus: "unconfirmed";
+  note?: string;
 }
 
 export interface SelectedOption {
