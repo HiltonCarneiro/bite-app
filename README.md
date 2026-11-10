@@ -59,6 +59,10 @@ A rota `/academico/refinamento` demonstra, separadamente do fluxo de compra, com
 
 O caso Amazon está desdobrado por insight. O caso Facebook permanece explicitamente pendente de fonte porque a página pública não expôs os slides completos; nenhum conteúdo foi atribuído ao estudo sem verificação.
 
+O refinamento visual de novembro de 2026 detalha 17 práticas de UX, com índice, jornada, comparação ampliável, limites éticos e propostas de avaliação. São 7 pares de capturas autênticas, com commit, rota, viewport e estado registrados em `public/ux-refinement/proveniencia.json`. A documentação da entrega e a cobertura dos 14 produtos estão em `docs/academico/refinamento-informacoes-e-evidencias.md`.
+
+Todos os produtos têm cartão de composição. As receitas e as personalizações são ilustrativas, com alergênicos explicitamente não confirmados; refrigerante informa a lacuna de marca e sabor. A receita base e as opções são descritas separadamente e não constituem garantia de segurança para alérgicos.
+
 ## Acessibilidade
 
 O projeto aplica os nove critérios definidos em `identidadevisual.md`:

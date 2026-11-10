@@ -28,8 +28,10 @@ test("fluxo completo do pedido até o histórico e detalhe", async ({ page }) =>
   await page.getByRole("button", { name: "Adicionar ao carrinho" }).click();
 
   await expect(page.getByText("Item adicionado ao carrinho.")).toBeVisible();
+  await page.reload();
   await expect(page.getByRole("link", { name: /Carrinho 1 item no carrinho/ })).toBeVisible();
   await page.getByRole("link", { name: "Continuar para checkout" }).click();
+  await expect(page).toHaveURL(/\/checkout/);
   await expect(page.getByText("Taxa de retirada")).toBeVisible();
   await expect(page.getByText(/Nenhuma assinatura ou cobrança recorrente/)).toBeVisible();
   await page.getByLabel("Nome para retirada (obrigatório)").fill("Ana Silva");
@@ -40,6 +42,8 @@ test("fluxo completo do pedido até o histórico e detalhe", async ({ page }) =>
   await expect(page).toHaveURL(/\/pedido\/.+\/confirmado/);
   await expect(page.getByRole("heading", { name: "Tudo certo, Ana Silva!" })).toBeVisible();
   await page.getByRole("link", { name: "Ver detalhes" }).click();
+  await expect(page).toHaveURL(/\/pedidos\/[^/]+$/);
+  await page.reload();
   await expect(page.getByRole("heading", { name: /Pedido BITE-/ })).toBeVisible();
   await expect(page.getByText("Retirar no fim da tarde.")).toBeVisible();
 
