@@ -1,0 +1,226 @@
+{
+  "home": {
+    "antes": {
+      "path": "/ux-refinement/home-antes.webp",
+      "status": "authentic",
+      "route": "/",
+      "version": "7fc292430630cb6677df11bc41aecfbc5f8d337a",
+      "sourceFingerprint": null,
+      "capturedAt": "2026-11-10T18:12:38.722Z",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "246a19a22d3d6374095388bc43ca9832ee29317bb39033a0d630079754f35d8c",
+      "state": "Armazenamento vazio; nenhuma opção selecionada",
+      "note": "Captura de viewport; abrir a imagem para examinar em tamanho original."
+    },
+    "depois": {
+      "path": "/ux-refinement/home-depois.webp",
+      "status": "authentic",
+      "route": "/",
+      "version": "ee36bfeab9efff7089c796252c3c8fd31a2fbb6f + alterações locais desta entrega",
+      "sourceFingerprint": "8886f8bee955cc2da21b760daad80b11de426e148b40329920f8a63bb7865bad",
+      "capturedAt": "2026-11-10T18:12:45.913Z",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "246a19a22d3d6374095388bc43ca9832ee29317bb39033a0d630079754f35d8c",
+      "state": "Armazenamento vazio; nenhuma opção selecionada",
+      "note": "Captura de viewport; abrir a imagem para examinar em tamanho original."
+    }
+  },
+  "menu": {
+    "antes": {
+      "path": "/ux-refinement/menu-antes.webp",
+      "status": "authentic",
+      "route": "/cardapio",
+      "version": "7fc292430630cb6677df11bc41aecfbc5f8d337a",
+      "sourceFingerprint": null,
+      "capturedAt": "2026-11-10T18:12:39.597Z",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "9fa64080c12ec5d484797614e2d087b4d3b27e2511ab2f5eedf7dee998c367f3",
+      "state": "Armazenamento vazio; nenhuma opção selecionada",
+      "note": "Captura de viewport; abrir a imagem para examinar em tamanho original."
+    },
+    "depois": {
+      "path": "/ux-refinement/menu-depois.webp",
+      "status": "authentic",
+      "route": "/cardapio",
+      "version": "ee36bfeab9efff7089c796252c3c8fd31a2fbb6f + alterações locais desta entrega",
+      "sourceFingerprint": "8886f8bee955cc2da21b760daad80b11de426e148b40329920f8a63bb7865bad",
+      "capturedAt": "2026-11-10T18:12:46.378Z",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "9fa64080c12ec5d484797614e2d087b4d3b27e2511ab2f5eedf7dee998c367f3",
+      "state": "Armazenamento vazio; nenhuma opção selecionada",
+      "note": "Captura de viewport; abrir a imagem para examinar em tamanho original."
+    }
+  },
+  "options": {
+    "antes": {
+      "path": "/ux-refinement/options-antes.webp",
+      "status": "authentic",
+      "route": "/produto/hamburguer-classico",
+      "version": "7fc292430630cb6677df11bc41aecfbc5f8d337a",
+      "sourceFingerprint": null,
+      "capturedAt": "2026-11-10T18:12:40.397Z",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "9b053f17144cf700fbaacc9d7a994ebb70ce777d44a51d2a8dea0176c9d140c6",
+      "state": "Armazenamento vazio; nenhuma opção selecionada",
+      "note": "Captura de viewport; abrir a imagem para examinar em tamanho original."
+    },
+    "depois": {
+      "path": "/ux-refinement/options-depois.webp",
+      "status": "authentic",
+      "route": "/produto/hamburguer-classico",
+      "version": "ee36bfeab9efff7089c796252c3c8fd31a2fbb6f + alterações locais desta entrega",
+      "sourceFingerprint": "8886f8bee955cc2da21b760daad80b11de426e148b40329920f8a63bb7865bad",
+      "capturedAt": "2026-11-10T18:12:46.944Z",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "fb65077e1fd71420ce2d590fb66bef8115d863f05baa0a38e512805e2f0feecd",
+      "state": "Armazenamento vazio; nenhuma opção selecionada",
+      "note": "Captura de viewport; abrir a imagem para examinar em tamanho original."
+    }
+  },
+  "price": {
+    "antes": {
+      "path": "/ux-refinement/price-antes.webp",
+      "status": "authentic",
+      "route": "/produto/hamburguer-classico",
+      "version": "7fc292430630cb6677df11bc41aecfbc5f8d337a",
+      "sourceFingerprint": null,
+      "capturedAt": "2026-11-10T18:12:41.294Z",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "7981c8bf6a50cc70a08f5b85cd933ca4e95a3d8977f6a47628244b8891b52113",
+      "state": "1 Hambúrguer Clássico; Brioche; Ao ponto; Queijo extra; quantidade 1; checkout sem preencher",
+      "note": "Captura de viewport; abrir a imagem para examinar em tamanho original."
+    },
+    "depois": {
+      "path": "/ux-refinement/price-depois.webp",
+      "status": "authentic",
+      "route": "/produto/hamburguer-classico",
+      "version": "ee36bfeab9efff7089c796252c3c8fd31a2fbb6f + alterações locais desta entrega",
+      "sourceFingerprint": "8886f8bee955cc2da21b760daad80b11de426e148b40329920f8a63bb7865bad",
+      "capturedAt": "2026-11-10T18:12:47.494Z",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "fc1bb915cf9eb9c2aeecdab8771bcba07b6682f4e6a28ab5cd3a9755cb02d1cc",
+      "state": "1 Hambúrguer Clássico; Brioche; Ao ponto; Queijo extra; quantidade 1; checkout sem preencher",
+      "note": "Captura de viewport; abrir a imagem para examinar em tamanho original."
+    }
+  },
+  "information": {
+    "antes": {
+      "path": "/ux-refinement/information-antes.webp",
+      "status": "authentic",
+      "route": "/produto/frango-grelhado",
+      "version": "7fc292430630cb6677df11bc41aecfbc5f8d337a",
+      "sourceFingerprint": null,
+      "capturedAt": "2026-11-10T18:12:42.078Z",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "4c95c205bbce88cae49a8a8fd273e1032ca42761ed0bee86991f83e28943e93d",
+      "state": "Armazenamento vazio; nenhuma opção selecionada",
+      "note": "Cartão ausente na baseline; captura autêntica do resumo do produto antes da personalização."
+    },
+    "depois": {
+      "path": "/ux-refinement/information-depois.webp",
+      "status": "authentic",
+      "route": "/produto/frango-grelhado",
+      "version": "ee36bfeab9efff7089c796252c3c8fd31a2fbb6f + alterações locais desta entrega",
+      "sourceFingerprint": "8886f8bee955cc2da21b760daad80b11de426e148b40329920f8a63bb7865bad",
+      "capturedAt": "2026-11-10T18:12:48.048Z",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "ab6787a7718a0775d32fa191777c6a6fc11ffaad41657cd42cbba87e0ea55a49",
+      "state": "Armazenamento vazio; nenhuma opção selecionada",
+      "note": "Captura de viewport; abrir a imagem para examinar em tamanho original."
+    }
+  },
+  "cart": {
+    "antes": {
+      "path": "/ux-refinement/cart-antes.webp",
+      "status": "authentic",
+      "route": "/carrinho?adicionado=1",
+      "version": "7fc292430630cb6677df11bc41aecfbc5f8d337a",
+      "sourceFingerprint": null,
+      "capturedAt": "2026-11-10T18:12:43.780Z",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "3173534f17573231b7ce9753763707a883cd38f55a7f03765ad287557517b95f",
+      "state": "1 Hambúrguer Clássico; Brioche; Ao ponto; Queijo extra; quantidade 1; checkout sem preencher",
+      "note": "Captura de viewport; abrir a imagem para examinar em tamanho original."
+    },
+    "depois": {
+      "path": "/ux-refinement/cart-depois.webp",
+      "status": "authentic",
+      "route": "/carrinho?adicionado=1",
+      "version": "ee36bfeab9efff7089c796252c3c8fd31a2fbb6f + alterações locais desta entrega",
+      "sourceFingerprint": "8886f8bee955cc2da21b760daad80b11de426e148b40329920f8a63bb7865bad",
+      "capturedAt": "2026-11-10T18:12:49.049Z",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "0448aa1eceabea86c875f18a2bcffee1742f0a8b04b9273ef4f8238d19c6beee",
+      "state": "1 Hambúrguer Clássico; Brioche; Ao ponto; Queijo extra; quantidade 1; checkout sem preencher",
+      "note": "Captura de viewport; abrir a imagem para examinar em tamanho original."
+    }
+  },
+  "checkout": {
+    "antes": {
+      "path": "/ux-refinement/checkout-antes.webp",
+      "status": "authentic",
+      "route": "/checkout",
+      "version": "7fc292430630cb6677df11bc41aecfbc5f8d337a",
+      "sourceFingerprint": null,
+      "capturedAt": "2026-11-10T18:12:45.498Z",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "153e46e6198cedd6d9257025caefe4efc81ab5d02d623dbf394051eb0e8f22a6",
+      "state": "1 Hambúrguer Clássico; Brioche; Ao ponto; Queijo extra; quantidade 1; checkout sem preencher",
+      "note": "Captura de viewport; abrir a imagem para examinar em tamanho original."
+    },
+    "depois": {
+      "path": "/ux-refinement/checkout-depois.webp",
+      "status": "authentic",
+      "route": "/checkout",
+      "version": "ee36bfeab9efff7089c796252c3c8fd31a2fbb6f + alterações locais desta entrega",
+      "sourceFingerprint": "8886f8bee955cc2da21b760daad80b11de426e148b40329920f8a63bb7865bad",
+      "capturedAt": "2026-11-10T18:12:50.002Z",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "aa3ea41c20d08f2422063874f852f5d9b37ce2bfc67b8fddebc1a6958b354dc6",
+      "state": "1 Hambúrguer Clássico; Brioche; Ao ponto; Queijo extra; quantidade 1; checkout sem preencher",
+      "note": "Captura de viewport; abrir a imagem para examinar em tamanho original."
+    }
+  }
+}

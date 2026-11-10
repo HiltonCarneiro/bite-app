@@ -6,7 +6,7 @@ export function SiteFooter() {
       <div className="container-page grid gap-3 text-sm sm:grid-cols-2 sm:items-center">
         <div className="grid gap-2">
           <p className="m-0 font-semibold">Bite — Comida boa, mais momentos.</p>
-          <Link className="w-fit rounded underline underline-offset-4" href="/academico/refinamento">Ver refinamento acadêmico de UX</Link>
+          <Link className="inline-flex min-h-11 w-fit items-center rounded underline underline-offset-4" href="/academico/refinamento">Ver refinamento acadêmico de UX</Link>
         </div>
         <p className="m-0 sm:text-right">Protótipo acadêmico — nenhum pedido ou pagamento real será realizado.</p>
       </div>

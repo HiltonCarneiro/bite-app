@@ -1,0 +1,9 @@
+{
+  "home": { "route": "/", "label": "Início e identidade visual", "target": "main" },
+  "menu": { "route": "/cardapio", "label": "Categorias e reconhecimento dos itens", "target": "main" },
+  "options": { "route": "/produto/hamburguer-classico", "label": "Escolhas obrigatórias sem pré-seleção", "target": "fieldset" },
+  "price": { "route": "/produto/hamburguer-classico", "label": "Preço após escolher Brioche, Ao ponto e Queijo extra", "target": "form > div:last-child" },
+  "information": { "route": "/produto/frango-grelhado", "label": "Informações da receita base e alergênicos", "target": "[aria-labelledby='product-information-title']" },
+  "cart": { "route": "/carrinho?adicionado=1", "label": "Carrinho com um hambúrguer configurado", "target": "main" },
+  "checkout": { "route": "/checkout", "label": "Retirada e pagamento sem seleção automática", "target": "main" }
+}
